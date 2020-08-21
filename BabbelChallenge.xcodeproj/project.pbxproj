@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EE6B5C4F24EFC74C0052D7D9 /* HomeViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */; };
 		EE6B5C5224EFC8730052D7D9 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6B5C5124EFC8730052D7D9 /* GameView.swift */; };
+		EE8DA74F24EFCAC200B3D9E3 /* GameViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */; };
 		EEABC81924EFC52D0036BFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */; };
 		EEABC81B24EFC52D0036BFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */; };
 		EEABC81D24EFC52D0036BFC0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81C24EFC52D0036BFC0 /* HomeView.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRouter.swift; sourceTree = "<group>"; };
 		EE6B5C5124EFC8730052D7D9 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewRouter.swift; sourceTree = "<group>"; };
 		EEABC81524EFC52C0036BFC0 /* BabbelChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabbelChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				EE6B5C5124EFC8730052D7D9 /* GameView.swift */,
+				EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */,
 			);
 			path = GamePlay;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE6B5C4F24EFC74C0052D7D9 /* HomeViewRouter.swift in Sources */,
+				EE8DA74F24EFCAC200B3D9E3 /* GameViewRouter.swift in Sources */,
 				EEABC81924EFC52D0036BFC0 /* AppDelegate.swift in Sources */,
 				EEABC81B24EFC52D0036BFC0 /* SceneDelegate.swift in Sources */,
 				EEABC81D24EFC52D0036BFC0 /* HomeView.swift in Sources */,
