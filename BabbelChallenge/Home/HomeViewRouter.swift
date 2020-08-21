@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct HomeViewRouter{
-    func routeToGameView(){
-        
+struct HomeViewRouter {
+    func routeToGameView() -> some View {
+        GameViewRouter().route()
     }
 }

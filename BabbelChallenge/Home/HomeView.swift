@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var navigateToNextView = false
     var body: some View {
         Button(action: {
-                    
+            self.navigateToNextView = true
         }) {
-            Text("Start").padding() 
+            Text("Start").padding()
+        }
+        .sheet(isPresented: self.$navigateToNextView) {
+            HomeViewRouter().routeToGameView()
         }
     }
 }
