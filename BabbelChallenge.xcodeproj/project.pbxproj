@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EE6B5C4F24EFC74C0052D7D9 /* HomeViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */; };
+		EE6B5C5224EFC8730052D7D9 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6B5C5124EFC8730052D7D9 /* GameView.swift */; };
 		EEABC81924EFC52D0036BFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */; };
 		EEABC81B24EFC52D0036BFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */; };
 		EEABC81D24EFC52D0036BFC0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81C24EFC52D0036BFC0 /* HomeView.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRouter.swift; sourceTree = "<group>"; };
+		EE6B5C5124EFC8730052D7D9 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		EEABC81524EFC52C0036BFC0 /* BabbelChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabbelChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE6B5C5024EFC81B0052D7D9 /* GamePlay */ = {
+			isa = PBXGroup;
+			children = (
+				EE6B5C5124EFC8730052D7D9 /* GameView.swift */,
+			);
+			path = GamePlay;
+			sourceTree = "<group>";
+		};
 		EEABC80C24EFC52C0036BFC0 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		EEABC81724EFC52D0036BFC0 /* BabbelChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				EE6B5C5024EFC81B0052D7D9 /* GamePlay */,
 				EEABC84A24EFC5E00036BFC0 /* Home */,
 				EEABC84824EFC56D0036BFC0 /* AppLifeCycle */,
 				EEABC84924EFC5990036BFC0 /* Resources */,
@@ -297,6 +308,7 @@
 				EEABC81924EFC52D0036BFC0 /* AppDelegate.swift in Sources */,
 				EEABC81B24EFC52D0036BFC0 /* SceneDelegate.swift in Sources */,
 				EEABC81D24EFC52D0036BFC0 /* HomeView.swift in Sources */,
+				EE6B5C5224EFC8730052D7D9 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
