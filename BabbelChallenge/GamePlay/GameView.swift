@@ -20,7 +20,7 @@ struct MovingView: View {
                     self.presenter.onAnimationCompletion()
                 })
                 .opacity(self.percentage)
-                .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height))
+                .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height * 2) - gm.size.height)
         }
     }
 }

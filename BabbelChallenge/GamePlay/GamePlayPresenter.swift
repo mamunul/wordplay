@@ -32,6 +32,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     private var totalPresented = 0
     private var currentQueryIndex = 0
     private var translateOptions = [String]()
+    private let animationDuration = 8.0
 
     init() {
         accuracy = "0/0"
@@ -48,9 +49,6 @@ class GamePlayPresenter: IGamePlayPresenter {
     func onTranslationButtonTapped() {
         checkResult()
         showNewQuery()
-        if isGameCompleted() {
-            showGameCompletionStatus()
-        }
         showTranslation()
     }
 
@@ -63,21 +61,37 @@ class GamePlayPresenter: IGamePlayPresenter {
         } else {
             translation = translateOptions[currentTranslationNo]
         }
-        if isGameCompleted() {
-            showGameCompletionStatus()
-        }
         showTranslation()
     }
 
     func onViewAppear() {
+        currentTranslationNo = 0
         showNewQuery()
         showTranslation()
     }
 
     private func showTranslation() {
         DispatchQueue.main.async {
-            withAnimation(.easeInOut(duration: 4.0)) {
+            withAnimation(.easeInOut(duration: self.animationDuration)) {
                 self.movePercentage = 1.0
+            }
+        }
+    }
+
+    private func loadTranslationOptions(
+        _ word: Dictionary<String, String>.Keys.Element,
+        _ keyArray: [Dictionary<String, String>.Keys.Element]
+    ) {
+        if let translation = translationMap[word] {
+            translateOptions.append(translation)
+        }
+        var usedIndices = [Int]()
+        usedIndices.append(currentQueryIndex)
+
+        for _ in 0 ..< (numberOfOptionsPerQuery - 1) {
+            let index = random(in: 0 ..< keyArray.count, excludingIndices: usedIndices)
+            if let translation = translationMap[keyArray[index]] {
+                translateOptions.append(translation)
             }
         }
     }
@@ -92,18 +106,9 @@ class GamePlayPresenter: IGamePlayPresenter {
         let word = keyArray[currentQueryIndex]
         self.word = word
 
-        if let translation = translationMap[word] {
-            translateOptions.append(translation)
-        }
-        var usedIndices = [Int]()
-        usedIndices.append(currentQueryIndex)
+        loadTranslationOptions(word, keyArray)
 
-        for _ in 0 ..< (numberOfOptionsPerQuery - 1) {
-            let index = random(in: 0 ..< keyArray.count, excludingIndices: usedIndices)
-            if let translation = translationMap[keyArray[index]] {
-                translateOptions.append(translation)
-            }
-        }
+        translation = translateOptions[currentTranslationNo]
     }
 
     private func random(in range: Range<Int>, excludingIndices: [Int]) -> Int {
@@ -120,16 +125,13 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func isQueryCompleted() -> Bool {
-        return currentTranslationNo == numberOfOptionsPerQuery
-    }
-
-    private func showGameCompletionStatus() {
+        return currentTranslationNo + 1 == numberOfOptionsPerQuery
     }
 
     private func checkResult() {
-        correctCount += 1
-        totalPresented += 1
-
-        accuracy = "\(correctCount)/\(totalPresented)"
+        if translationMap[word] == translation {
+            correctCount += 1
+        }
+        accuracy = "\(correctCount)/\(currentQueryIndex)"
     }
 }
