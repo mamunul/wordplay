@@ -99,11 +99,9 @@
 		EEABC81724EFC52D0036BFC0 /* BabbelChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */,
-				EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */,
+				EEABC84824EFC56D0036BFC0 /* AppLifeCycle */,
 				EEABC81C24EFC52D0036BFC0 /* ContentView.swift */,
-				EEABC81E24EFC5330036BFC0 /* Assets.xcassets */,
-				EEABC82324EFC5330036BFC0 /* LaunchScreen.storyboard */,
+				EEABC84924EFC5990036BFC0 /* Resources */,
 				EEABC82624EFC5330036BFC0 /* Info.plist */,
 				EEABC82024EFC5330036BFC0 /* Preview Content */,
 			);
@@ -134,6 +132,24 @@
 				EEABC83C24EFC5340036BFC0 /* Info.plist */,
 			);
 			path = BabbelChallengeUITests;
+			sourceTree = "<group>";
+		};
+		EEABC84824EFC56D0036BFC0 /* AppLifeCycle */ = {
+			isa = PBXGroup;
+			children = (
+				EEABC82324EFC5330036BFC0 /* LaunchScreen.storyboard */,
+				EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */,
+				EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */,
+			);
+			path = AppLifeCycle;
+			sourceTree = "<group>";
+		};
+		EEABC84924EFC5990036BFC0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EEABC81E24EFC5330036BFC0 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
