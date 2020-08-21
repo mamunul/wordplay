@@ -8,14 +8,33 @@
 import SwiftUI
 
 let gamePlayPresenter = GamePlayPresenter()
+
+struct MovingButtonView: View {
+    @ObservedObject var presenter: GamePlayPresenter
+    @Binding var show: Bool
+
+    var body: some View {
+        GeometryReader { gm in
+            Button(action: {}) {
+                Text(self.presenter.translation).padding()
+            }
+            .offset(x: 0, y: self.show ? -gm.size.height : gm.size.height)
+        }
+    }
+}
+
 struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
+    @State var show = false
     var body: some View {
         VStack {
             Text(presenter.word).padding()
-            Button(action: {}) {
-                Text(presenter.translation).padding()
-            }
+            MovingButtonView(presenter: presenter, show: $show)
+            Button("ShowTranslation") {
+                withAnimation(.easeInOut(duration: 3.0)) {
+                    self.show.toggle()
+                }
+            }.padding(20)
             Text("Accuracy: " + presenter.accuracy).padding()
         }
     }
