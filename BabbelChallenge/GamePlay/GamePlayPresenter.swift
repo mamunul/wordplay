@@ -38,12 +38,15 @@ class GamePlayPresenter: IGamePlayPresenter {
         word = "test"
         translation = "trans-test"
         movePercentage = 0.0
+        loadTranslationMap()
     }
 
     private func loadTranslationMap() {
         translationMap["test1"] = "1test"
         translationMap["test2"] = "2test"
         translationMap["test3"] = "3test"
+        
+        translationMap = TranslationRepository().getTranslation()
     }
 
     func onTranslationButtonTapped() {

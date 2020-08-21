@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE4E1B9224EFFB570089F54A /* TranslationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E1B9124EFFB570089F54A /* TranslationRepository.swift */; };
+		EE4E1B9424EFFC3E0089F54A /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = EE4E1B9324EFFC3E0089F54A /* words.json */; };
 		EE6B5C4F24EFC74C0052D7D9 /* HomeViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */; };
 		EE6B5C5224EFC8730052D7D9 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6B5C5124EFC8730052D7D9 /* GameView.swift */; };
 		EE8DA74F24EFCAC200B3D9E3 /* GameViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE4E1B9124EFFB570089F54A /* TranslationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationRepository.swift; sourceTree = "<group>"; };
+		EE4E1B9324EFFC3E0089F54A /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRouter.swift; sourceTree = "<group>"; };
 		EE6B5C5124EFC8730052D7D9 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewRouter.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */,
 				EE8DA75024EFCC8F00B3D9E3 /* GamePlayPresenter.swift */,
 				EE8DA75224EFE89300B3D9E3 /* AnimatableModifierDouble.swift */,
+				EE4E1B9124EFFB570089F54A /* TranslationRepository.swift */,
 			);
 			path = GamePlay;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 		EEABC84924EFC5990036BFC0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EE4E1B9324EFFC3E0089F54A /* words.json */,
 				EEABC81E24EFC5330036BFC0 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -287,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEABC82524EFC5330036BFC0 /* LaunchScreen.storyboard in Resources */,
+				EE4E1B9424EFFC3E0089F54A /* words.json in Resources */,
 				EEABC82224EFC5330036BFC0 /* Preview Assets.xcassets in Resources */,
 				EEABC81F24EFC5330036BFC0 /* Assets.xcassets in Resources */,
 			);
@@ -314,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE6B5C4F24EFC74C0052D7D9 /* HomeViewRouter.swift in Sources */,
+				EE4E1B9224EFFB570089F54A /* TranslationRepository.swift in Sources */,
 				EE8DA75124EFCC8F00B3D9E3 /* GamePlayPresenter.swift in Sources */,
 				EE8DA75324EFE89300B3D9E3 /* AnimatableModifierDouble.swift in Sources */,
 				EE8DA74F24EFCAC200B3D9E3 /* GameViewRouter.swift in Sources */,
