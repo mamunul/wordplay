@@ -6,21 +6,23 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol IGamePlayPresenter: ObservableObject {
     var word: String { get set }
     var translation: String { get set }
     var accuracy: String { get set }
-    var showTranslation: Bool { get set }
+    var movePercentage: Double { get set }
     func onAnimationCompletion()
     func onTranslationButtonTapped()
+    func onViewAppear()
 }
 
 class GamePlayPresenter: IGamePlayPresenter {
     @Published var word: String
     @Published var translation: String
     @Published var accuracy: String
-    @Published var showTranslation: Bool
+    @Published var movePercentage: Double
 
     private var translationMap = [String: String]()
     private let numberOfOptionsPerQuery = 4
@@ -35,7 +37,7 @@ class GamePlayPresenter: IGamePlayPresenter {
         accuracy = "0/0"
         word = "test"
         translation = "trans-test"
-        showTranslation = false
+        movePercentage = 0.0
     }
 
     private func loadTranslationMap() {
@@ -52,11 +54,12 @@ class GamePlayPresenter: IGamePlayPresenter {
         if isGameCompleted() {
             showGameCompletionStatus()
         }
+        showTranslation()
     }
 
     func onAnimationCompletion() {
         currentTranslationNo += 1
-
+        movePercentage = 0.0
         checkResult()
         if isQueryCompleted() {
             showNewQuery()
@@ -65,6 +68,19 @@ class GamePlayPresenter: IGamePlayPresenter {
         }
         if isGameCompleted() {
             showGameCompletionStatus()
+        }
+        showTranslation()
+    }
+
+    func onViewAppear() {
+        showTranslation()
+    }
+
+    private func showTranslation() {
+        DispatchQueue.main.async {
+            withAnimation(.easeInOut(duration: 4.0)) {
+                self.movePercentage = 1.0
+            }
         }
     }
 

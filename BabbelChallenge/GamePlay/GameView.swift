@@ -19,7 +19,7 @@ struct MovingView: View {
             }
             .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
                 self.percentage = 0.0
-
+                self.presenter.onAnimationCompletion()
             })
             .opacity(self.percentage)
             .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height))
