@@ -33,17 +33,19 @@ class GamePlayPresenter: IGamePlayPresenter {
     private var currentQueryIndex = 0
     private var translateOptions = [String]()
     private let animationDuration = 8.0
+    private let repository: ITranslationRepository
 
-    init() {
+    init(repository: ITranslationRepository = TranslationRepository()) {
         accuracy = "0/0"
         word = "test"
         translation = "trans-test"
         movePercentage = 0.0
+        self.repository = repository
         loadTranslationMap()
     }
 
     private func loadTranslationMap() {
-        translationMap = TranslationRepository().getTranslation()
+        translationMap = repository.getTranslation()
     }
 
     func onTranslationButtonTapped() {

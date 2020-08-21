@@ -12,10 +12,14 @@ struct Translation: Decodable {
     let textSpa: String
 }
 
-class TranslationRepository {
+protocol ITranslationRepository {
+    func getTranslation() -> [String: String]
+}
+
+class TranslationRepository: ITranslationRepository {
     private var translationMap = [String: String]()
 
-    func getTranslation() -> [String: String]{
+    func getTranslation() -> [String: String] {
         if translationMap.count > 0 {
             return translationMap
         }
