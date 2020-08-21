@@ -9,30 +9,34 @@ import SwiftUI
 
 let gamePlayPresenter = GamePlayPresenter()
 
-struct MovingButtonView: View {
+struct MovingView: View {
     @ObservedObject var presenter: GamePlayPresenter
-    @Binding var show: Bool
-
+    @Binding var percentage: Double
     var body: some View {
         GeometryReader { gm in
             Button(action: {}) {
                 Text(self.presenter.translation).padding()
             }
-            .offset(x: 0, y: self.show ? -gm.size.height : gm.size.height)
+            .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
+                self.percentage = 0.0
+
+            })
+            .opacity(self.percentage)
+            .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height))
         }
     }
 }
 
 struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
-    @State var show = false
+    @State var percentage: Double = 0
     var body: some View {
         VStack {
             Text(presenter.word).padding()
-            MovingButtonView(presenter: presenter, show: $show)
+            MovingView(presenter: presenter, percentage: self.$percentage)
             Button("ShowTranslation") {
-                withAnimation(.easeInOut(duration: 3.0)) {
-                    self.show.toggle()
+                withAnimation(.easeInOut(duration: 4.0)) {
+                    self.percentage = 1
                 }
             }.padding(20)
             Text("Accuracy: " + presenter.accuracy).padding()
