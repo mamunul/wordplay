@@ -12,11 +12,11 @@ struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
     var body: some View {
         VStack {
-            Text(presenter.word)
+            Text(presenter.word).padding()
             Button(action: {}) {
-                Text(presenter.translation)
+                Text(presenter.translation).padding()
             }
-            Text(presenter.accuracy)
+            Text("Accuracy: " + presenter.accuracy).padding()
         }
     }
 }
