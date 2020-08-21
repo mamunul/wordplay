@@ -20,7 +20,7 @@
 		EEABC81F24EFC5330036BFC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEABC81E24EFC5330036BFC0 /* Assets.xcassets */; };
 		EEABC82224EFC5330036BFC0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEABC82124EFC5330036BFC0 /* Preview Assets.xcassets */; };
 		EEABC82524EFC5330036BFC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEABC82324EFC5330036BFC0 /* LaunchScreen.storyboard */; };
-		EEABC83024EFC5340036BFC0 /* BabbelChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC82F24EFC5340036BFC0 /* BabbelChallengeTests.swift */; };
+		EEABC83024EFC5340036BFC0 /* GamePlayPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC82F24EFC5340036BFC0 /* GamePlayPresenterTests.swift */; };
 		EEABC83B24EFC5340036BFC0 /* BabbelChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC83A24EFC5340036BFC0 /* BabbelChallengeUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +58,7 @@
 		EEABC82424EFC5330036BFC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEABC82624EFC5330036BFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEABC82B24EFC5340036BFC0 /* BabbelChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabbelChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEABC82F24EFC5340036BFC0 /* BabbelChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabbelChallengeTests.swift; sourceTree = "<group>"; };
+		EEABC82F24EFC5340036BFC0 /* GamePlayPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayPresenterTests.swift; sourceTree = "<group>"; };
 		EEABC83124EFC5340036BFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEABC83624EFC5340036BFC0 /* BabbelChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabbelChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEABC83A24EFC5340036BFC0 /* BabbelChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabbelChallengeUITests.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		EEABC82E24EFC5340036BFC0 /* BabbelChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
-				EEABC82F24EFC5340036BFC0 /* BabbelChallengeTests.swift */,
+				EEABC82F24EFC5340036BFC0 /* GamePlayPresenterTests.swift */,
 				EEABC83124EFC5340036BFC0 /* Info.plist */,
 			);
 			path = BabbelChallengeTests;
@@ -336,7 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEABC83024EFC5340036BFC0 /* BabbelChallengeTests.swift in Sources */,
+				EEABC83024EFC5340036BFC0 /* GamePlayPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,7 +49,10 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     func onTranslationButtonTapped() {
-        checkResult()
+        if translationMap[word] == translation {
+            correctCount += 1
+        }
+        updateResult()
         showNewQuery()
         showTranslation()
     }
@@ -57,7 +60,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     func onAnimationCompletion() {
         currentTranslationNo += 1
         movePercentage = 0.0
-        checkResult()
+        updateResult()
         if isQueryCompleted() {
             showNewQuery()
         } else {
@@ -99,7 +102,6 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func showNewQuery() {
-        currentQueryIndex += 1
         currentTranslationNo = 0
         translateOptions.removeAll()
 
@@ -111,6 +113,7 @@ class GamePlayPresenter: IGamePlayPresenter {
         loadTranslationOptions(word, keyArray)
 
         translation = translateOptions[currentTranslationNo]
+        currentQueryIndex += 1
     }
 
     private func random(in range: Range<Int>, excludingIndices: [Int]) -> Int {
@@ -130,10 +133,7 @@ class GamePlayPresenter: IGamePlayPresenter {
         return currentTranslationNo + 1 == numberOfOptionsPerQuery
     }
 
-    private func checkResult() {
-        if translationMap[word] == translation {
-            correctCount += 1
-        }
+    private func updateResult() {
         accuracy = "\(correctCount)/\(currentQueryIndex)"
     }
 }
