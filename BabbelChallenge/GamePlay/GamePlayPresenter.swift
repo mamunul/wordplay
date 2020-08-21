@@ -42,16 +42,10 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func loadTranslationMap() {
-        translationMap["test1"] = "1test"
-        translationMap["test2"] = "2test"
-        translationMap["test3"] = "3test"
-        
         translationMap = TranslationRepository().getTranslation()
     }
 
     func onTranslationButtonTapped() {
-        accuracy = "\(correctCount)/\(totalPresented)"
-
         checkResult()
         showNewQuery()
         if isGameCompleted() {
@@ -76,6 +70,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     func onViewAppear() {
+        showNewQuery()
         showTranslation()
     }
 
@@ -134,5 +129,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     private func checkResult() {
         correctCount += 1
         totalPresented += 1
+
+        accuracy = "\(correctCount)/\(totalPresented)"
     }
 }

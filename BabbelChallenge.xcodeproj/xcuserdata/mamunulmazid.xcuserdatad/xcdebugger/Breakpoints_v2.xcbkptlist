@@ -48,5 +48,99 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8E8D064-7CD0-4375-BC8C-66BEC4962431"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabbelChallenge/GamePlay/GamePlayPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2FE1815B-91E3-46D7-BB1F-EF5397828886"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabbelChallenge/GamePlay/GamePlayPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "onAnimationCompletion()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1EE5FAF3-D1B0-4023-A79F-9D23EF82EFB4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabbelChallenge/GamePlay/GamePlayPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "showTranslation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "122276DE-F251-42F6-8981-F69D0E956A00"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabbelChallenge/GamePlay/GamePlayPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "showTranslation()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "122276DE-F251-42F6-8981-F69D0E956A00 - a3d11b6c408e31c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in BabbelChallenge.GamePlayPresenter.(showTranslation in _022EEEC9D7DA79E5D56E36867A22189B)() -&gt; ()"
+                  moduleName = "BabbelChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mamunulmazid/Documents/ios_workspace/BabbelChallenge/BabbelChallenge/GamePlay/GamePlayPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "122276DE-F251-42F6-8981-F69D0E956A00 - 4dc7c93b58e15ba6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in BabbelChallenge.GamePlayPresenter.(showTranslation in _022EEEC9D7DA79E5D56E36867A22189B)() -&gt; ()"
+                  moduleName = "BabbelChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mamunulmazid/Documents/ios_workspace/BabbelChallenge/BabbelChallenge/GamePlay/GamePlayPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

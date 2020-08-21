@@ -27,22 +27,18 @@ struct MovingView: View {
 
 struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
-    @State var movePercentage: Double = 0
     var body: some View {
         VStack {
             Text(presenter.word).padding()
-            MovingView(presenter: presenter, percentage: self.$movePercentage)
+            MovingView(presenter: presenter, percentage: self.$presenter.movePercentage)
             Button(action: {
                 self.presenter.onTranslationButtonTapped()
             }) {
                 Text("Select").padding()
             }
-            Button("ShowTranslation") {
-                withAnimation(.easeInOut(duration: 4.0)) {
-                    self.movePercentage = 1
-                }
-            }.padding()
             Text("Accuracy: " + presenter.accuracy).padding()
+        }.onAppear{
+            self.presenter.onViewAppear()
         }
     }
 }
