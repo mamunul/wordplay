@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE6B5C4F24EFC74C0052D7D9 /* HomeViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */; };
 		EEABC81924EFC52D0036BFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */; };
 		EEABC81B24EFC52D0036BFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */; };
-		EEABC81D24EFC52D0036BFC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81C24EFC52D0036BFC0 /* ContentView.swift */; };
+		EEABC81D24EFC52D0036BFC0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABC81C24EFC52D0036BFC0 /* HomeView.swift */; };
 		EEABC81F24EFC5330036BFC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEABC81E24EFC5330036BFC0 /* Assets.xcassets */; };
 		EEABC82224EFC5330036BFC0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEABC82124EFC5330036BFC0 /* Preview Assets.xcassets */; };
 		EEABC82524EFC5330036BFC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEABC82324EFC5330036BFC0 /* LaunchScreen.storyboard */; };
@@ -35,10 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRouter.swift; sourceTree = "<group>"; };
 		EEABC81524EFC52C0036BFC0 /* BabbelChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabbelChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEABC81824EFC52D0036BFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEABC81A24EFC52D0036BFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EEABC81C24EFC52D0036BFC0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EEABC81C24EFC52D0036BFC0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EEABC81E24EFC5330036BFC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEABC82124EFC5330036BFC0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EEABC82424EFC5330036BFC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,8 +101,8 @@
 		EEABC81724EFC52D0036BFC0 /* BabbelChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				EEABC84A24EFC5E00036BFC0 /* Home */,
 				EEABC84824EFC56D0036BFC0 /* AppLifeCycle */,
-				EEABC81C24EFC52D0036BFC0 /* ContentView.swift */,
 				EEABC84924EFC5990036BFC0 /* Resources */,
 				EEABC82624EFC5330036BFC0 /* Info.plist */,
 				EEABC82024EFC5330036BFC0 /* Preview Content */,
@@ -150,6 +152,15 @@
 				EEABC81E24EFC5330036BFC0 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EEABC84A24EFC5E00036BFC0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EEABC81C24EFC52D0036BFC0 /* HomeView.swift */,
+				EE6B5C4E24EFC74C0052D7D9 /* HomeViewRouter.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,9 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE6B5C4F24EFC74C0052D7D9 /* HomeViewRouter.swift in Sources */,
 				EEABC81924EFC52D0036BFC0 /* AppDelegate.swift in Sources */,
 				EEABC81B24EFC52D0036BFC0 /* SceneDelegate.swift in Sources */,
-				EEABC81D24EFC52D0036BFC0 /* ContentView.swift in Sources */,
+				EEABC81D24EFC52D0036BFC0 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
