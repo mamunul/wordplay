@@ -28,6 +28,8 @@ class GamePlayPresenter: IGamePlayPresenter {
     private var currentTranslationNo = 0
     private var correctCount = 0
     private var totalPresented = 0
+    private var currentQueryIndex = 0
+    private var translateOptions = [String]()
 
     init() {
         accuracy = "0/0"
@@ -45,9 +47,6 @@ class GamePlayPresenter: IGamePlayPresenter {
     func onTranslationButtonTapped() {
         accuracy = "\(correctCount)/\(totalPresented)"
 
-        totalPresented += 1
-        currentTranslationNo = 0
-        correctCount += 1
         checkResult()
         showNewQuery()
         if isGameCompleted() {
@@ -59,22 +58,62 @@ class GamePlayPresenter: IGamePlayPresenter {
         currentTranslationNo += 1
 
         checkResult()
-        showNewQuery()
+        if isQueryCompleted() {
+            showNewQuery()
+        } else {
+            translation = translateOptions[currentTranslationNo]
+        }
         if isGameCompleted() {
             showGameCompletionStatus()
         }
     }
 
     private func showNewQuery() {
+        currentQueryIndex += 1
+        currentTranslationNo = 0
+        translateOptions.removeAll()
+
+        let keyArray = Array(translationMap.keys)
+
+        let word = keyArray[currentQueryIndex]
+        self.word = word
+
+        if let translation = translationMap[word] {
+            translateOptions.append(translation)
+        }
+        var usedIndices = [Int]()
+        usedIndices.append(currentQueryIndex)
+
+        for _ in 0 ..< (numberOfOptionsPerQuery - 1) {
+            let index = random(in: 0 ..< keyArray.count, excludingIndices: usedIndices)
+            if let translation = translationMap[keyArray[index]] {
+                translateOptions.append(translation)
+            }
+        }
+    }
+
+    private func random(in range: Range<Int>, excludingIndices: [Int]) -> Int {
+        var randValue = 0
+        repeat {
+            randValue = Int.random(in: Range(uncheckedBounds: (range.lowerBound, range.upperBound)))
+        } while excludingIndices.contains(randValue)
+
+        return randValue
     }
 
     private func isGameCompleted() -> Bool {
-        true
+        currentQueryIndex + 1 == numberOfQuery
+    }
+
+    private func isQueryCompleted() -> Bool {
+        return currentTranslationNo == numberOfOptionsPerQuery
     }
 
     private func showGameCompletionStatus() {
     }
 
     private func checkResult() {
+        correctCount += 1
+        totalPresented += 1
     }
 }
