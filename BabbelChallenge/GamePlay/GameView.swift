@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+let gamePlayPresenter = GamePlayPresenter()
 struct GameView: View {
+    @ObservedObject var presenter = gamePlayPresenter
     var body: some View {
         VStack {
-            Text("abc")
+            Text(presenter.word)
             Button(action: {}) {
-                Text("translation")
+                Text(presenter.translation)
             }
-            Text("Accuracy")
+            Text(presenter.accuracy)
         }
     }
 }
