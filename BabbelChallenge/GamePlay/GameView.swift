@@ -14,31 +14,34 @@ struct MovingView: View {
     @Binding var percentage: Double
     var body: some View {
         GeometryReader { gm in
-            Button(action: {}) {
-                Text(self.presenter.translation).padding()
-            }
-            .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
-                self.percentage = 0.0
-                self.presenter.onAnimationCompletion()
-            })
-            .opacity(self.percentage)
-            .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height))
+            Text(self.presenter.translation).padding()
+                .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
+                    self.percentage = 0.0
+                    self.presenter.onAnimationCompletion()
+                })
+                .opacity(self.percentage)
+                .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height))
         }
     }
 }
 
 struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
-    @State var percentage: Double = 0
+    @State var movePercentage: Double = 0
     var body: some View {
         VStack {
             Text(presenter.word).padding()
-            MovingView(presenter: presenter, percentage: self.$percentage)
+            MovingView(presenter: presenter, percentage: self.$movePercentage)
+            Button(action: {
+                self.presenter.onTranslationButtonTapped()
+            }) {
+                Text("Select").padding()
+            }
             Button("ShowTranslation") {
                 withAnimation(.easeInOut(duration: 4.0)) {
-                    self.percentage = 1
+                    self.movePercentage = 1
                 }
-            }.padding(20)
+            }.padding()
             Text("Accuracy: " + presenter.accuracy).padding()
         }
     }
