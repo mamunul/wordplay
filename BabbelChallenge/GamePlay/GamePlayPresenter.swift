@@ -20,7 +20,23 @@ protocol IGamePlayPresenter: ObservableObject {
 }
 
 enum QueryStatus {
-    case ongoing, wrong, skipped, correct
+    case ongoing
+    case wrong
+    case skipped
+    case correct
+
+    func getTextAndColor() -> (String, Color) {
+        switch self {
+        case .ongoing:
+            return ("", Color.green)
+        case .wrong:
+            return ("Incorrect", Color.red)
+        case .skipped:
+            return ("Incorrect", Color.yellow)
+        case .correct:
+            return ("Correct", Color.green)
+        }
+    }
 }
 
 class GamePlayPresenter: IGamePlayPresenter {

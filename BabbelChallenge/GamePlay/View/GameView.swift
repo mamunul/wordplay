@@ -54,24 +54,11 @@ struct GameView: View {
                 percentage: self.$presenter.movePercentage
             ).border(Color.blue)
 
-            Text(self.$statusMessage.wrappedValue)
+            Text(self.statusMessage)
                 .foregroundColor(self.color)
         }
         .onReceive(self.presenter.$queryStatus) { status in
-            switch status {
-            case .ongoing:
-                self.statusMessage = ""
-                self.color = Color.green
-            case .wrong:
-                self.$statusMessage.wrappedValue = "Incorrect"
-                self.color = Color.red
-            case .skipped:
-                self.statusMessage = "Incorrect"
-                self.color = Color.yellow
-            case .correct:
-                self.statusMessage = "Correct"
-                self.color = Color.green
-            }
+            (self.statusMessage, self.color) = status.getTextAndColor()
         }
         .onAppear {
             self.presenter.onViewAppear()
