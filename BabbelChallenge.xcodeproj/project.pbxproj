@@ -110,11 +110,36 @@
 				EE9D00DD24F7846F0016E872 /* Entity */,
 				EE9D00DC24F784230016E872 /* View */,
 				EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */,
-				EE8DA75024EFCC8F00B3D9E3 /* GamePlayPresenter.swift */,
+				EE6D446F24F7B41B0097FF53 /* Presenter */,
 				EE9D00DB24F7840F0016E872 /* Interactor */,
-				EE6D446724F7A6200097FF53 /* QueryStatus.swift */,
 			);
 			path = GamePlay;
+			sourceTree = "<group>";
+		};
+		EE6D446D24F7B3DE0097FF53 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				EE1FD84424F78BB000CE8CF1 /* GameLogicFactory.swift */,
+				EE6D446924F7B35F0097FF53 /* DataFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		EE6D446E24F7B3F30097FF53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE6D446B24F7B3810097FF53 /* Translation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE6D446F24F7B41B0097FF53 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				EE6D446724F7A6200097FF53 /* QueryStatus.swift */,
+				EE8DA75024EFCC8F00B3D9E3 /* GamePlayPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		EE9D00DB24F7840F0016E872 /* Interactor */ = {
@@ -122,9 +147,8 @@
 			children = (
 				EE4E1B9124EFFB570089F54A /* TranslationRepository.swift */,
 				EE9D00D924F777C60016E872 /* GamePlayLogic.swift */,
-				EE1FD84424F78BB000CE8CF1 /* GameLogicFactory.swift */,
-				EE6D446924F7B35F0097FF53 /* DataFactory.swift */,
-				EE6D446B24F7B3810097FF53 /* Translation.swift */,
+				EE6D446D24F7B3DE0097FF53 /* Factory */,
+				EE6D446E24F7B3F30097FF53 /* Model */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
