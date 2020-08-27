@@ -5,9 +5,8 @@
 //  Created by Mamunul Mazid on 8/21/20.
 //
 
+import Combine
 import SwiftUI
-
-let gamePlayPresenter = GamePlayPresenter()
 
 struct GameViewTheme {
     static let wordColor = Color.black
@@ -20,8 +19,8 @@ struct GameViewTheme {
     static let translationSelectButtonTitle = "Select Translation"
 }
 
-struct MovingView: View {
-    @ObservedObject var presenter: GamePlayPresenter
+struct MovingView<Presenter: IGamePlayPresenter>: View {
+    @ObservedObject var presenter: Presenter
     @Binding var percentage: Double
     var body: some View {
         GeometryReader { geometry in
@@ -42,8 +41,8 @@ struct MovingView: View {
     }
 }
 
-struct GameView: View {
-    @ObservedObject var presenter = gamePlayPresenter
+struct GameView<Presenter: IGamePlayPresenter>: View {
+    @ObservedObject var presenter: Presenter
     @State var statusMessage: String = ""
     @State var color = Color.green
     @State var showAlert = false
@@ -69,7 +68,7 @@ struct GameView: View {
             Text(self.statusMessage)
                 .foregroundColor(self.color)
         }
-        .onReceive(self.presenter.$queryStatus) { status in
+        .onReceive(Just(self.presenter.queryStatus)) { status in
             (self.statusMessage, self.color) = status.getTextAndColor()
         }
         .onAppear {
@@ -102,6 +101,6 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView(presenter: GamePlayPresenter())
     }
 }
