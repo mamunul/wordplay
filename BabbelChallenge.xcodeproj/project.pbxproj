@@ -95,14 +95,30 @@
 		EE6B5C5024EFC81B0052D7D9 /* GamePlay */ = {
 			isa = PBXGroup;
 			children = (
-				EE6B5C5124EFC8730052D7D9 /* GameView.swift */,
+				EE9D00DC24F784230016E872 /* View */,
 				EE8DA74E24EFCAC200B3D9E3 /* GameViewRouter.swift */,
 				EE8DA75024EFCC8F00B3D9E3 /* GamePlayPresenter.swift */,
-				EE8DA75224EFE89300B3D9E3 /* AnimatableModifierDouble.swift */,
+				EE9D00DB24F7840F0016E872 /* Interactor */,
+			);
+			path = GamePlay;
+			sourceTree = "<group>";
+		};
+		EE9D00DB24F7840F0016E872 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
 				EE4E1B9124EFFB570089F54A /* TranslationRepository.swift */,
 				EE9D00D924F777C60016E872 /* GamePlayLogic.swift */,
 			);
-			path = GamePlay;
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		EE9D00DC24F784230016E872 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE8DA75224EFE89300B3D9E3 /* AnimatableModifierDouble.swift */,
+				EE6B5C5124EFC8730052D7D9 /* GameView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EEABC80C24EFC52C0036BFC0 = {
