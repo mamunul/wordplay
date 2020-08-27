@@ -46,7 +46,6 @@ class GamePlayPresenter: IGamePlayPresenter {
     ) {
         self.repository = repository
         facotry = gameLogicFactory
-        loadData()
     }
 
     private func loadData() {
@@ -59,10 +58,12 @@ class GamePlayPresenter: IGamePlayPresenter {
 
     private func doInitialSetup() {
         currentTranslationNo = 0
-        word = ""
-        translation = ""
-        accuracy = ""
-        movePercentage = 0
+        DispatchQueue.main.async {
+            self.word = ""
+            self.translation = ""
+            self.accuracy = ""
+            self.movePercentage = 0
+        }
         gameLogic =
             facotry.make(
                 queryCount: numberOfQuery,
@@ -72,8 +73,11 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     func onViewAppear() {
-        doInitialSetup()
-        startGame()
+        DispatchQueue.global(qos: .utility).async {
+            self.loadData()
+            self.doInitialSetup()
+            self.startGame()
+        }
     }
 
     func checkResult() {
@@ -90,10 +94,15 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func setNextWord() {
-        queryStatus = .ongoing
+        DispatchQueue.main.async {
+            self.queryStatus = .ongoing
+        }
+
         do {
             gameObject = try gameLogic?.nextWord()
-            word = gameObject?.word ?? ""
+            DispatchQueue.main.async {
+                self.word = self.gameObject?.word ?? ""
+            }
         } catch {
             showFinalResult()
         }
@@ -103,10 +112,9 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func showNextTranslation() {
-        translation = gameObject?.options[currentTranslationNo] ?? ""
-        currentTranslationNo += 1
-
         DispatchQueue.main.async {
+            self.translation = self.gameObject?.options[self.currentTranslationNo] ?? ""
+            self.currentTranslationNo += 1
             withAnimation(.easeInOut(duration: self.animationDuration)) {
                 self.setFinalAnimationPosition()
             }
