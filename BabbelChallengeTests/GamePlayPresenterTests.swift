@@ -19,7 +19,7 @@ class GamePlayPresenterTests: XCTestCase {
 
     func test_onAnimationCompletion_movePercentage_shouldBe_0() {
         let expected = 0.0
-        presenter.onViewAppear()
+        presenter.startPlaying()
         presenter.onAnimationCompletion()
 
         XCTAssertEqual(expected, presenter.movePercentage, accuracy: 0.01)
@@ -27,14 +27,14 @@ class GamePlayPresenterTests: XCTestCase {
 
     func test_onAnimationCompletion_checkQueryWord_isCorrect() {
         let expected = "abc"
-        presenter.onViewAppear()
+        presenter.startPlaying()
 
         XCTAssertEqual(expected, presenter.word)
     }
 
     func test_onAnimationCompletion_checkTranslation_isCOrrect() {
         let expected = "cba"
-        presenter.onViewAppear()
+        presenter.startPlaying()
         XCTAssertEqual(expected, presenter.translation)
     }
 }

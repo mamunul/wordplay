@@ -56,7 +56,7 @@ struct GameView: View {
             (self.statusMessage, self.color) = status.getTextAndColor()
         }
         .onAppear {
-            self.presenter.onViewAppear()
+            self.presenter.startPlaying()
         }
         .alert(isPresented: self.$presenter.isGameEnded) {
             getAlert()
@@ -68,7 +68,7 @@ struct GameView: View {
             title: Text("Game Finished"),
             message: Text(getAlertMessage()),
             primaryButton: .default(Text("Replay"), action: {
-                self.presenter.resetGame()
+                self.presenter.startPlaying()
             }),
             secondaryButton: .default(Text("Dismiss")
             )

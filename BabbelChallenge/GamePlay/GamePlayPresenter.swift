@@ -17,8 +17,7 @@ protocol IGamePlayPresenter: ObservableObject {
     var playerStatus: PlayerStatus { get set }
     func onAnimationCompleted()
     func onTranslationSelected()
-    func onViewAppear()
-    func resetGame()
+    func startPlaying()
 }
 
 class GamePlayPresenter: IGamePlayPresenter {
@@ -56,10 +55,10 @@ class GamePlayPresenter: IGamePlayPresenter {
         }
     }
 
-    func resetGame() {
-        isGameEnded = false
+    private func resetGame() {
         currentTranslationNo = 0
         DispatchQueue.main.async {
+            self.isGameEnded = false
             self.word = ""
             self.translation = ""
             self.accuracy = ""
@@ -73,7 +72,7 @@ class GamePlayPresenter: IGamePlayPresenter {
             )
     }
 
-    func onViewAppear() {
+    func startPlaying() {
         DispatchQueue.global(qos: .utility).async {
             self.loadData()
             self.resetGame()
