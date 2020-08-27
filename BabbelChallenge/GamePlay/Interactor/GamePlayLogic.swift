@@ -7,16 +7,6 @@
 
 import Foundation
 
-struct GameObject {
-    let word: String
-    let options: [String]
-}
-
-struct PlayerStatus {
-    let playedCount = 0
-    let correctCount = 0
-}
-
 enum GamePlayLogicError: Error {
     case GameQueryExceeds
 }
