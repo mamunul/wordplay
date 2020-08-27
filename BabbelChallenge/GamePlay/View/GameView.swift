@@ -14,7 +14,10 @@ struct MovingView: View {
     @Binding var percentage: Double
     var body: some View {
         GeometryReader { geometry in
-            Text(self.presenter.translation).padding()
+            Text(self.presenter.translation)
+                .foregroundColor(Color.blue)
+                .font(.system(size: 25))
+                .padding()
                 .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
                     self.presenter.onAnimationCompleted()
                 })
@@ -36,18 +39,20 @@ struct GameView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text(self.presenter.word).padding()
+                Text(self.presenter.word)
+                    .font(.system(size: 25))
+                    .padding()
                 Spacer()
                 Button(action: {
                     self.presenter.onTranslationSelected()
                 }) {
-                    Text("Select").padding()
+                    Text("Select Translation").padding()
                 }
             }
             MovingView(
                 presenter: self.presenter,
                 percentage: self.$presenter.movePercentage
-            ).border(Color.blue)
+            )
 
             Text(self.statusMessage)
                 .foregroundColor(self.color)
