@@ -38,13 +38,16 @@ class GamePlayPresenter: IGamePlayPresenter {
     private let facotry: IGameLogicFactory
     private var gameLogic: IGamePlayLogic?
     private var gameObject: GameObject?
+    private var dispatchQueueWrapper: IDispatchQueueWrapper
 
     init(
         repository: ITranslationRepository = TranslationRepository(),
-        gameLogicFactory: IGameLogicFactory = GameLogicFactory()
+        gameLogicFactory: IGameLogicFactory = GameLogicFactory(),
+        dispatchQueueWrapper: IDispatchQueueWrapper = DispatchQueueWrapper()
     ) {
         self.repository = repository
         facotry = gameLogicFactory
+        self.dispatchQueueWrapper = dispatchQueueWrapper
     }
 
     private func loadData() {
@@ -57,7 +60,7 @@ class GamePlayPresenter: IGamePlayPresenter {
 
     private func resetGame() {
         currentTranslationNo = 0
-        DispatchQueue.main.async {
+        dispatchQueueWrapper.async(in: DispatchQueue.main) {
             self.isGameEnded = false
             self.word = ""
             self.translation = ""
@@ -73,7 +76,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     func startPlaying() {
-        DispatchQueue.global(qos: .utility).async {
+        dispatchQueueWrapper.async(in: DispatchQueue.global(qos: .utility)) {
             self.loadData()
             self.resetGame()
             self.startGame()
@@ -102,7 +105,7 @@ class GamePlayPresenter: IGamePlayPresenter {
         do {
             gameObject = try gameLogic?.nextWord()
             let deadlineTime = DispatchTime.now() + .seconds(1)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            dispatchQueueWrapper.asyncAfter(in: DispatchQueue.main, deadline: deadlineTime) {
                 self.word = self.gameObject?.word ?? ""
                 self.queryStatus = .ongoing
             }
@@ -117,7 +120,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func showNextTranslation() {
-        DispatchQueue.main.async {
+        dispatchQueueWrapper.async(in: DispatchQueue.main) {
             self.translation = self.gameObject?.options[self.currentTranslationNo] ?? ""
             self.currentTranslationNo += 1
             withAnimation(.easeInOut(duration: self.animationDuration)) {
