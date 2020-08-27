@@ -94,15 +94,16 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func setNextWord() {
-        DispatchQueue.main.async {
-            self.queryStatus = .ongoing
-        }
+        currentTranslationNo = 0
 
         do {
             gameObject = try gameLogic?.nextWord()
-            DispatchQueue.main.async {
+            let deadlineTime = DispatchTime.now() + .seconds(1)
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
                 self.word = self.gameObject?.word ?? ""
+                self.queryStatus = .ongoing
             }
+
         } catch {
             showFinalResult()
         }
@@ -126,7 +127,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func isAllTranslationChoicesSkipped() -> Bool {
-        currentTranslationNo == numberOfOptionsPerQuery
+        currentTranslationNo + 1 == numberOfOptionsPerQuery
     }
 
     private func resetAnimationPosition() {

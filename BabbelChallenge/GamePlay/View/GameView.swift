@@ -13,31 +13,67 @@ struct MovingView: View {
     @ObservedObject var presenter: GamePlayPresenter
     @Binding var percentage: Double
     var body: some View {
-        GeometryReader { gm in
+        GeometryReader { geometry in
             Text(self.presenter.translation).padding()
                 .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
-                    self.percentage = 0.0
                     self.presenter.onAnimationCompleted()
                 })
                 .opacity(self.percentage)
-                .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height * 2) - gm.size.height)
+                .offset(x: 0, y: CGFloat(self.percentage) * geometry.size.height - geometry.size.height / 2)
         }
+    }
+}
+
+struct StatusView: View {
+    @Binding var statusMessage: String
+    @Binding var color: Color
+    var body: some View {
+        Text(self.$statusMessage.wrappedValue)
+            .foregroundColor(self.color)
     }
 }
 
 struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
+    @State var statusMessage: String = ""
+    @State var color = Color.green
     var body: some View {
-        VStack {
-            Text(presenter.word).padding()
-            MovingView(presenter: presenter, percentage: self.$presenter.movePercentage)
-            Button(action: {
-                self.presenter.onTranslationSelected()
-            }) {
-                Text("Select").padding()
+        ZStack {
+            VStack {
+                Text(self.presenter.word).padding()
+                Spacer()
+                Button(action: {
+                    self.presenter.onTranslationSelected()
+                }) {
+                    Text("Select").padding()
+                }
+                Text("Accuracy: " + self.presenter.accuracy).padding()
             }
-            Text("Accuracy: " + presenter.accuracy).padding()
-        }.onAppear{
+            MovingView(
+                presenter: self.presenter,
+                percentage: self.$presenter.movePercentage
+            ).border(Color.blue)
+
+            Text(self.$statusMessage.wrappedValue)
+                .foregroundColor(self.color)
+        }
+        .onReceive(self.presenter.$queryStatus) { status in
+            switch status {
+            case .ongoing:
+                self.statusMessage = ""
+                self.color = Color.green
+            case .wrong:
+                self.$statusMessage.wrappedValue = "Incorrect"
+                self.color = Color.red
+            case .skipped:
+                self.statusMessage = "Incorrect"
+                self.color = Color.yellow
+            case .correct:
+                self.statusMessage = "Correct"
+                self.color = Color.green
+            }
+        }
+        .onAppear {
             self.presenter.onViewAppear()
         }
     }
