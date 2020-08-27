@@ -24,15 +24,6 @@ struct MovingView: View {
     }
 }
 
-struct StatusView: View {
-    @Binding var statusMessage: String
-    @Binding var color: Color
-    var body: some View {
-        Text(self.$statusMessage.wrappedValue)
-            .foregroundColor(self.color)
-    }
-}
-
 struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
     @State var statusMessage: String = ""
