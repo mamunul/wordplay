@@ -13,9 +13,12 @@ protocol IGamePlayPresenter: ObservableObject {
     var translation: String { get set }
     var movePercentage: Double { get set }
     var queryStatus: QueryStatus { get set }
+    var isGameEnded: Bool { get set }
+    var playerStatus: PlayerStatus { get set }
     func onAnimationCompleted()
     func onTranslationSelected()
     func onViewAppear()
+    func resetGame()
 }
 
 class GamePlayPresenter: IGamePlayPresenter {
@@ -24,6 +27,8 @@ class GamePlayPresenter: IGamePlayPresenter {
     @Published var accuracy: String = ""
     @Published var movePercentage: Double = 0
     @Published var queryStatus = QueryStatus.ongoing
+    @Published var isGameEnded = false
+    @Published var playerStatus = PlayerStatus()
 
     private var translationMap = [String: String]()
     private let numberOfOptionsPerQuery = 4
@@ -51,7 +56,8 @@ class GamePlayPresenter: IGamePlayPresenter {
         }
     }
 
-    private func doInitialSetup() {
+    func resetGame() {
+        isGameEnded = false
         currentTranslationNo = 0
         DispatchQueue.main.async {
             self.word = ""
@@ -70,7 +76,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     func onViewAppear() {
         DispatchQueue.global(qos: .utility).async {
             self.loadData()
-            self.doInitialSetup()
+            self.resetGame()
             self.startGame()
         }
     }
@@ -78,9 +84,12 @@ class GamePlayPresenter: IGamePlayPresenter {
     func checkResult() {
         if translationMap[word] == translation {
             queryStatus = .correct
+            playerStatus.correctCount += 1
         } else {
             queryStatus = .wrong
         }
+
+        playerStatus.playedCount += 1
     }
 
     private func startGame() {
@@ -105,6 +114,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     private func showFinalResult() {
+        isGameEnded = true
     }
 
     private func showNextTranslation() {
@@ -140,8 +150,11 @@ class GamePlayPresenter: IGamePlayPresenter {
         resetAnimationPosition()
         if isAllTranslationChoicesSkipped() {
             queryStatus = .skipped
+            playerStatus.playedCount += 1
             setNextWord()
         }
-        showNextTranslation()
+        if !isGameEnded {
+            showNextTranslation()
+        }
     }
 }

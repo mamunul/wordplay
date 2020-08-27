@@ -8,6 +8,6 @@
 import Foundation
 
 struct PlayerStatus {
-    let playedCount = 0
-    let correctCount = 0
+    var playedCount = 0
+    var correctCount = 0
 }

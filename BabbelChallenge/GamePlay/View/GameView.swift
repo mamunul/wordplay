@@ -19,8 +19,12 @@ struct MovingView: View {
                     self.presenter.onAnimationCompleted()
                 })
                 .opacity(self.percentage)
-                .offset(x: 0, y: CGFloat(self.percentage) * geometry.size.height - geometry.size.height / 2)
+                .offset(x: 0, y: self.getCurrentY(geometry))
         }
+    }
+
+    private func getCurrentY(_ geometry: GeometryProxy) -> CGFloat {
+        return CGFloat(percentage) * geometry.size.height - geometry.size.height / 2
     }
 }
 
@@ -28,6 +32,7 @@ struct GameView: View {
     @ObservedObject var presenter = gamePlayPresenter
     @State var statusMessage: String = ""
     @State var color = Color.green
+    @State var showAlert = false
     var body: some View {
         ZStack {
             VStack {
@@ -38,7 +43,6 @@ struct GameView: View {
                 }) {
                     Text("Select").padding()
                 }
-                Text("Accuracy: " + self.presenter.accuracy).padding()
             }
             MovingView(
                 presenter: self.presenter,
@@ -54,6 +58,25 @@ struct GameView: View {
         .onAppear {
             self.presenter.onViewAppear()
         }
+        .alert(isPresented: self.$presenter.isGameEnded) {
+            getAlert()
+        }
+    }
+
+    private func getAlert() -> Alert {
+        Alert(
+            title: Text("Game Finished"),
+            message: Text(getAlertMessage()),
+            primaryButton: .default(Text("Replay"), action: {
+                self.presenter.resetGame()
+            }),
+            secondaryButton: .default(Text("Dismiss")
+            )
+        )
+    }
+
+    private func getAlertMessage() -> String {
+        "Correct \($presenter.playerStatus.correctCount.wrappedValue) out of \($presenter.playerStatus.playedCount.wrappedValue)"
     }
 }
 
