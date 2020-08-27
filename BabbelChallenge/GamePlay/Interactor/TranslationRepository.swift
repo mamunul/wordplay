@@ -7,6 +7,16 @@
 
 import Foundation
 
+protocol IDataFactory {
+    func make(url: URL) -> Data?
+}
+
+class DataFactory: IDataFactory {
+    func make(url: URL) -> Data? {
+        try? Data(contentsOf: url)
+    }
+}
+
 struct Translation: Decodable {
     let textEng: String
     let textSpa: String
@@ -26,10 +36,16 @@ class TranslationRepository: ITranslationRepository {
     private let fielExtension = "json"
     private var bundle: IBundle
     private var jsonDecoder: IJSONDecoder
+    private var dataFactory: IDataFactory
 
-    init(bundle: IBundle = Bundle.main, jsonDecoder: IJSONDecoder = JSONDecoder()) {
+    init(
+        bundle: IBundle = Bundle.main,
+        jsonDecoder: IJSONDecoder = JSONDecoder(),
+        dataFactory: IDataFactory = DataFactory()
+    ) {
         self.bundle = bundle
         self.jsonDecoder = jsonDecoder
+        self.dataFactory = dataFactory
     }
 
     func getTranslation() throws -> [String: String] {
@@ -43,7 +59,7 @@ class TranslationRepository: ITranslationRepository {
 
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
 
-        guard let jsonData = try? Data(contentsOf: url) else { throw TranslationRepositoryError.inValidData }
+        guard let jsonData = dataFactory.make(url: url) else { throw TranslationRepositoryError.inValidData }
 
         guard let result = try? jsonDecoder.decode([Translation].self, from: jsonData) else {
             throw TranslationRepositoryError.inValidJSON
