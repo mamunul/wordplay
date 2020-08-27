@@ -13,10 +13,14 @@ protocol IGamePlayPresenter: ObservableObject {
     var translation: String { get set }
     var accuracy: String { get set }
     var movePercentage: Double { get set }
+    var queryStatus: QueryStatus { get set }
+    func onAnimationCompleted()
+    func onTranslationSelected()
+    func onViewAppear()
 }
 
-enum Status {
-    case wrong, skipped, correct
+enum QueryStatus {
+    case ongoing, wrong, skipped, correct
 }
 
 class GamePlayPresenter: IGamePlayPresenter {
@@ -24,6 +28,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     @Published var translation: String = ""
     @Published var accuracy: String = ""
     @Published var movePercentage: Double = 0
+    @Published var queryStatus = QueryStatus.ongoing
 
     private var translationMap = [String: String]()
     private let numberOfOptionsPerQuery = 4
@@ -31,51 +36,110 @@ class GamePlayPresenter: IGamePlayPresenter {
     private var currentTranslationNo = 0
     private let animationDuration = 8.0
     private let repository: ITranslationRepository
+    private let facotry: IGameLogicFactory
+    private var gameLogic: IGamePlayLogic?
+    private var gameObject: GameObject?
 
-    init(repository: ITranslationRepository = TranslationRepository()) {
+    init(
+        repository: ITranslationRepository = TranslationRepository(),
+        gameLogicFactory: IGameLogicFactory = GameLogicFactory()
+    ) {
         self.repository = repository
-        loadData()
+        facotry = gameLogicFactory
+        DispatchQueue.global(qos: .utility).async {
+            self.loadData()
+        }
     }
 
     private func loadData() {
+        do {
+            translationMap = try repository.getTranslation()
+        } catch {
+            print(error)
+        }
+    }
+
+    private func doInitialSetup() {
+        currentTranslationNo = 0
+        word = ""
+        translation = ""
+        accuracy = ""
+        movePercentage = 0
+        gameLogic =
+            facotry.make(
+                queryCount: numberOfQuery,
+                optionsPerQuery: numberOfOptionsPerQuery,
+                translations: translationMap
+            )
     }
 
     func onViewAppear() {
         doInitialSetup()
+        startGame()
     }
 
-    private func checkResult() {
+    func checkResult() {
+        if translationMap[word] == translation {
+            queryStatus = .correct
+        } else {
+            queryStatus = .wrong
+        }
     }
 
-    private func updateResult() {
+    private func startGame() {
+        setNextWord()
+        showNextTranslation()
     }
 
     private func setNextWord() {
+        queryStatus = .ongoing
+        do {
+            gameObject = try gameLogic?.nextWord()
+            word = gameObject?.word ?? ""
+        } catch {
+            showFinalResult()
+        }
+    }
+
+    private func showFinalResult() {
     }
 
     private func showNextTranslation() {
+        translation = gameObject?.options[currentTranslationNo] ?? ""
+        currentTranslationNo += 1
+
+        DispatchQueue.main.async {
+            withAnimation(.easeInOut(duration: self.animationDuration)) {
+                self.setFinalAnimationPosition()
+            }
+        }
+    }
+
+    private func setFinalAnimationPosition() {
+        movePercentage = 1.0
     }
 
     private func isAllTranslationChoicesSkipped() -> Bool {
-        true
+        currentTranslationNo == numberOfOptionsPerQuery
+    }
+
+    private func resetAnimationPosition() {
+        movePercentage = 0.0
     }
 
     func onTranslationSelected() {
+        resetAnimationPosition()
         checkResult()
-        updateResult()
         setNextWord()
         showNextTranslation()
     }
 
     func onAnimationCompleted() {
+        resetAnimationPosition()
         if isAllTranslationChoicesSkipped() {
-            checkResult()
-            updateResult()
+            queryStatus = .skipped
             setNextWord()
         }
         showNextTranslation()
-    }
-
-    private func doInitialSetup() {
     }
 }

@@ -17,7 +17,7 @@ struct MovingView: View {
             Text(self.presenter.translation).padding()
                 .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
                     self.percentage = 0.0
-                    self.presenter.onAnimationCompletion()
+                    self.presenter.onAnimationCompleted()
                 })
                 .opacity(self.percentage)
                 .offset(x: 0, y: CGFloat(CGFloat(self.percentage) * gm.size.height * 2) - gm.size.height)
@@ -32,7 +32,7 @@ struct GameView: View {
             Text(presenter.word).padding()
             MovingView(presenter: presenter, percentage: self.$presenter.movePercentage)
             Button(action: {
-                self.presenter.onTranslationButtonTapped()
+                self.presenter.onTranslationSelected()
             }) {
                 Text("Select").padding()
             }
