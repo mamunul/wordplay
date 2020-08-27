@@ -25,9 +25,11 @@ class TranslationRepository: ITranslationRepository {
     private let fileName = "words"
     private let fielExtension = "json"
     private var bundle: IBundle
+    private var jsonDecoder: IJSONDecoder
 
-    init(bundle: IBundle = Bundle.main) {
+    init(bundle: IBundle = Bundle.main, jsonDecoder: IJSONDecoder = JSONDecoder()) {
         self.bundle = bundle
+        self.jsonDecoder = jsonDecoder
     }
 
     func getTranslation() throws -> [String: String] {
@@ -39,12 +41,11 @@ class TranslationRepository: ITranslationRepository {
             throw TranslationRepositoryError.invalidURL
         }
 
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
 
         guard let jsonData = try? Data(contentsOf: url) else { throw TranslationRepositoryError.inValidData }
 
-        guard let result = try? decoder.decode([Translation].self, from: jsonData) else {
+        guard let result = try? jsonDecoder.decode([Translation].self, from: jsonData) else {
             throw TranslationRepositoryError.inValidJSON
         }
 
@@ -61,4 +62,12 @@ protocol IBundle {
 }
 
 extension Bundle: IBundle {
+}
+
+protocol IJSONDecoder {
+    var keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy { get set }
+    func decode<T>(_ type: T.Type, from data: Data) throws -> T where T: Decodable
+}
+
+extension JSONDecoder: IJSONDecoder {
 }
