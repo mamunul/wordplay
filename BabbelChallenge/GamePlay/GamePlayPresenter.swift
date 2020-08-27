@@ -11,32 +11,11 @@ import SwiftUI
 protocol IGamePlayPresenter: ObservableObject {
     var word: String { get set }
     var translation: String { get set }
-    var accuracy: String { get set }
     var movePercentage: Double { get set }
     var queryStatus: QueryStatus { get set }
     func onAnimationCompleted()
     func onTranslationSelected()
     func onViewAppear()
-}
-
-enum QueryStatus {
-    case ongoing
-    case wrong
-    case skipped
-    case correct
-
-    func getTextAndColor() -> (String, Color) {
-        switch self {
-        case .ongoing:
-            return ("", Color.green)
-        case .wrong:
-            return ("Incorrect", Color.red)
-        case .skipped:
-            return ("Incorrect", Color.yellow)
-        case .correct:
-            return ("Correct", Color.green)
-        }
-    }
 }
 
 class GamePlayPresenter: IGamePlayPresenter {
