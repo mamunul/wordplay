@@ -46,9 +46,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     ) {
         self.repository = repository
         facotry = gameLogicFactory
-        DispatchQueue.global(qos: .utility).async {
-            self.loadData()
-        }
+        loadData()
     }
 
     private func loadData() {
