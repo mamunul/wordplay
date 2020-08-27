@@ -7,21 +7,6 @@
 
 import Foundation
 
-protocol IDataFactory {
-    func make(url: URL) -> Data?
-}
-
-class DataFactory: IDataFactory {
-    func make(url: URL) -> Data? {
-        try? Data(contentsOf: url)
-    }
-}
-
-struct Translation: Decodable {
-    let textEng: String
-    let textSpa: String
-}
-
 protocol ITranslationRepository {
     func getTranslation() throws -> [String: String]
 }
