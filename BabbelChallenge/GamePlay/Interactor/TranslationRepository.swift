@@ -24,13 +24,18 @@ class TranslationRepository: ITranslationRepository {
     private var translationMap = [String: String]()
     private let fileName = "words"
     private let fielExtension = "json"
+    private var bundle: IBundle
+
+    init(bundle: IBundle = Bundle.main) {
+        self.bundle = bundle
+    }
 
     func getTranslation() throws -> [String: String] {
         if !translationMap.isEmpty {
             return translationMap
         }
 
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: fielExtension) else {
+        guard let url = bundle.url(forResource: fileName, withExtension: fielExtension) else {
             throw TranslationRepositoryError.invalidURL
         }
 
@@ -49,4 +54,11 @@ class TranslationRepository: ITranslationRepository {
 
         return translationMap
     }
+}
+
+protocol IBundle {
+    func url(forResource name: String?, withExtension ext: String?) -> URL?
+}
+
+extension Bundle: IBundle {
 }
