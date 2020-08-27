@@ -9,14 +9,25 @@ import SwiftUI
 
 let gamePlayPresenter = GamePlayPresenter()
 
+struct GameViewTheme {
+    static let wordColor = Color.black
+    static let wordFont = Font.system(size: 25)
+    static let translationColor = Color.blue
+    static let translationFont = Font.system(size: 25)
+    static let gameFinishedAlertTitle = "Game Finished"
+    static let gameFinishedAlertReplayButtonTitle = "Game Finished"
+    static let gameFinishedAlertDismissButtonTitle = "Game Finished"
+    static let translationSelectButtonTitle = "Select Translation"
+}
+
 struct MovingView: View {
     @ObservedObject var presenter: GamePlayPresenter
     @Binding var percentage: Double
     var body: some View {
         GeometryReader { geometry in
             Text(self.presenter.translation)
-                .foregroundColor(Color.blue)
-                .font(.system(size: 25))
+                .foregroundColor(GameViewTheme.translationColor)
+                .font(GameViewTheme.translationFont)
                 .padding()
                 .modifier(AnimatableModifierDouble(bindedValue: self.percentage) {
                     self.presenter.onAnimationCompleted()
@@ -40,13 +51,14 @@ struct GameView: View {
         ZStack {
             VStack {
                 Text(self.presenter.word)
-                    .font(.system(size: 25))
+                    .foregroundColor(GameViewTheme.wordColor)
+                    .font(GameViewTheme.wordFont)
                     .padding()
                 Spacer()
                 Button(action: {
                     self.presenter.onTranslationSelected()
                 }) {
-                    Text("Select Translation").padding()
+                    Text(GameViewTheme.translationSelectButtonTitle).padding()
                 }
             }
             MovingView(
@@ -70,12 +82,15 @@ struct GameView: View {
 
     private func getAlert() -> Alert {
         Alert(
-            title: Text("Game Finished"),
+            title: Text(GameViewTheme.gameFinishedAlertTitle),
             message: Text(getAlertMessage()),
-            primaryButton: .default(Text("Replay"), action: {
-                self.presenter.startPlaying()
-            }),
-            secondaryButton: .default(Text("Dismiss")
+            primaryButton:
+            .default(Text(GameViewTheme.gameFinishedAlertReplayButtonTitle),
+                     action: {
+                         self.presenter.startPlaying()
+                     }
+            ),
+            secondaryButton: .default(Text(GameViewTheme.gameFinishedAlertDismissButtonTitle)
             )
         )
     }
