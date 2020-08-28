@@ -1,0 +1,17 @@
+os: osx
+osx_image: xcode11.5
+language: swift
+
+jobs:
+  include:
+  script:
+   - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
+   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
+  if: branch = master
+    - stage: "Build"                # naming the Tests stage
+      name: "Build"            # names the first Tests stage job
+      script: xcrun xcodebuild -project WordPlay.xcodeproj -scheme "WordPlay"  -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro'  -configuration Debug  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
+
+    - stage: "Tests"                # naming the Tests stage
+      name: "Unit Tests"            # names the first Tests stage job
+      script: xcrun xcodebuild -project WordPlay.xcodeproj -scheme "WordPlay"  -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro'  -configuration Debug  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test
