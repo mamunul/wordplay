@@ -78,7 +78,7 @@
 		EEABC83624EFC5340036BFC0 /* WordPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEABC83A24EFC5340036BFC0 /* WordPlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPlayUITests.swift; sourceTree = "<group>"; };
 		EEABC83C24EFC5340036BFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEDD766A24F7B8D6003D434A /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		EEDD766A24F7B8D6003D434A /* WordPlay.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = WordPlay.xctestplan; sourceTree = "<group>"; };
 		EEDD766B24F7C4F4003D434A /* DispatchQueueWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueueWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,7 +178,7 @@
 		EEABC80C24EFC52C0036BFC0 = {
 			isa = PBXGroup;
 			children = (
-				EEDD766A24F7B8D6003D434A /* TestPlan.xctestplan */,
+				EEDD766A24F7B8D6003D434A /* WordPlay.xctestplan */,
 				EEABC81724EFC52D0036BFC0 /* WordPlay */,
 				EEABC82E24EFC5340036BFC0 /* WordPlayTests */,
 				EEABC83924EFC5340036BFC0 /* WordPlayUITests */,
