@@ -8,11 +8,11 @@
 import Foundation
 
 protocol IGameLogicFactory {
-    func make(queryCount: Int, optionsPerQuery: Int, translations: [String: String]) -> IGamePlayLogic
+    func make(queryCount: Int, optionsPerQuery: Int, translations: [String: String]) -> IGamePlayHelper
 }
 
 class GameLogicFactory: IGameLogicFactory {
-    func make(queryCount: Int, optionsPerQuery: Int, translations: [String: String]) -> IGamePlayLogic {
-        GamePlayLogic(queryCount: queryCount, optionsPerQuery: optionsPerQuery, translations: translations)
+    func make(queryCount: Int, optionsPerQuery: Int, translations: [String: String]) -> IGamePlayHelper {
+        GamePlayHelper(queryCount: queryCount, optionsPerQuery: optionsPerQuery, translations: translations)
     }
 }

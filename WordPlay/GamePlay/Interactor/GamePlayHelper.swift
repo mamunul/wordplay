@@ -11,13 +11,13 @@ enum GamePlayLogicError: Error {
     case GameQueryExceeds
 }
 
-protocol IGamePlayLogic {
+protocol IGamePlayHelper {
     func isCorrect(translation: String, for word: String) -> Bool
     func nextWord() throws -> GameObject
     func resetGame()
 }
 
-class GamePlayLogic: IGamePlayLogic {
+class GamePlayHelper: IGamePlayHelper {
     private let queryCount: Int
     private let optionsPerQuery: Int
     private let translations: [String: String]

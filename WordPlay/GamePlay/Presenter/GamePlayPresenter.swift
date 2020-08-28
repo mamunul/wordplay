@@ -36,7 +36,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     private let animationDuration = 8.0
     private let repository: ITranslationRepository
     private let facotry: IGameLogicFactory
-    private var gameLogic: IGamePlayLogic?
+    private var gameLogic: IGamePlayHelper?
     private var gameObject: GameObject?
     private var dispatchQueueWrapper: IDispatchQueueWrapper
 

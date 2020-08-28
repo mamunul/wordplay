@@ -271,12 +271,12 @@ private class MockDispatchQueue: IDispatchQueueWrapper {
 
 private class MockGamePlayHelperFactory: IGameLogicFactory {
     var gamePlayHelper: MockGamePlayHelper?
-    func make(queryCount: Int, optionsPerQuery: Int, translations: [String: String]) -> IGamePlayLogic {
+    func make(queryCount: Int, optionsPerQuery: Int, translations: [String: String]) -> IGamePlayHelper {
         gamePlayHelper!
     }
 }
 
-private class MockGamePlayHelper: IGamePlayLogic {
+private class MockGamePlayHelper: IGamePlayHelper {
     var gameObject: GameObject?
     var correct = false
     func isCorrect(translation: String, for word: String) -> Bool {
