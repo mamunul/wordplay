@@ -84,7 +84,7 @@ class GamePlayPresenter: IGamePlayPresenter {
     }
 
     func checkResult() {
-        if translationMap[word] == translation {
+        if gameLogic?.isCorrect(translation: translation, for: word) ?? false {
             queryStatus = .correct
             playerStatus.correctCount += 1
         } else {
