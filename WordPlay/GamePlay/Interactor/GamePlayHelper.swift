@@ -47,10 +47,11 @@ class GamePlayHelper: IGamePlayHelper {
     }
 
     private func generateIndices(_ count: Int, _ inRange: Range<Int>, _ including: Int) -> [Int] {
-        var indices = inRange.map { _ in Int.random(in: inRange) }
+        var indices =  Array(inRange.lowerBound..<inRange.upperBound)
 
         indices.remove(at: including)
-        indices = indices.dropLast(indices.count - (count + 1))
+        indices = indices.shuffled()
+        indices = indices.dropLast(indices.count - (count - 1))
         indices.append(including)
         return indices
     }
@@ -60,7 +61,7 @@ class GamePlayHelper: IGamePlayHelper {
     }
 
     func nextWord() throws -> GameObject {
-        if currentQueryNo > queryCount {
+        if currentQueryNo >= queryCount {
             throw GamePlayLogicError.GameQueryExceeds
         }
         let word = wordList[currentQueryNo]
