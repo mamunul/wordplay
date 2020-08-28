@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "9623B927-E4C8-4131-AC73-409285B6DEA5",
+      "id" : "D1D5B8CC-499D-439A-AC9D-834EEC24245A",
       "name" : "Configuration 1",
       "options" : {
 
@@ -9,7 +9,20 @@
     }
   ],
   "defaultOptions" : {
-
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:WordPlay.xcodeproj",
+          "identifier" : "EEABC81424EFC52C0036BFC0",
+          "name" : "WordPlay"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:WordPlay.xcodeproj",
+      "identifier" : "EEABC81424EFC52C0036BFC0",
+      "name" : "WordPlay"
+    }
   },
   "testTargets" : [
     {
@@ -17,6 +30,13 @@
         "containerPath" : "container:WordPlay.xcodeproj",
         "identifier" : "EEABC82A24EFC5340036BFC0",
         "name" : "WordPlayTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:WordPlay.xcodeproj",
+        "identifier" : "EEABC83524EFC5340036BFC0",
+        "name" : "WordPlayUITests"
       }
     }
   ],
