@@ -13,7 +13,7 @@ jobs:
   build:
   
     name: Build and Test
-    runs-on: macOS
+    runs-on: macOS-latest
     
     strategy:
       max-parallel: 1
